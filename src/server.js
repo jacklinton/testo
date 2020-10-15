@@ -2,6 +2,7 @@ import path from 'path'
 import config from 'config'
 import express from 'express'
 import BodyParser from 'body-parser'
+import session from 'express-session'
 import cors from 'cors'
 import expressWinston from 'express-winston'
 import setRequestIdHeader from '@apis/request-id'
@@ -13,6 +14,10 @@ import routes from './routes/index.js'
 const __dirname = path.resolve()
 
 const app = express()
+
+// Init session
+app.use(session({secret: 'S3CRE7', resave: true, saveUninitialized: true}))
+
 app.use(cors())
 app.use(BodyParser.json())
 
