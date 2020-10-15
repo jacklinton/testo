@@ -1,0 +1,3 @@
+FROM postgres:13-alpine
+
+ADD ./docker/init /docker-entrypoint-initdb.d/

@@ -1,0 +1,95 @@
+{
+  "info": {
+    "title": "Research Portal API",
+    "version": "0.0.1",
+    "description": "API resources for the Research Portal"
+  },
+  "host": "localhost",
+  "basePath": "/",
+  "swagger": "2.0",
+  "paths": {
+    "/auth": {
+      "post": {
+        "description": "Used to authenticate users with LDAP campuskey/password flow",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Contains the token for authorization in the payload"
+          }
+        }
+      }
+    },
+    "/list/departments": {
+      "get": {
+        "description": "Returns an array of string values for all the unique departments in the db",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "list if unique departments for all listings in db"
+          }
+        }
+      }
+    },
+    "/list/divisions": {
+      "get": {
+        "description": "Returns an array of string values for all the unique divisions in the db",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "list if unique divisions for all listings in db"
+          }
+        }
+      }
+    },
+    "/list/attendings": {
+      "get": {
+        "description": "Returns an array of string values for all the unique attending physicians in the db",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "list of unique attending physicians for all listings in db"
+          }
+        }
+      }
+    },
+    "/list/positions": {
+      "get": {
+        "description": "Returns an array of string values for all the unique divisions in the db",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "list of unique position types for all listings in db"
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "description": "Returns the version of the app as an object",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "version"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": []
+}

@@ -1,0 +1,14 @@
+errors:
+  uncaught: "Uncaught error. Please contact system administrator"
+redis:
+  host: redis
+  port: 6379
+  prefix: testo
+  defaultUnit: EX
+  defaultDuration: 604800 # 1 week
+ssl:
+  key: "/opt/testo/certs/jeffersonedu.key"
+  cert: "/opt/testo/certs/jeffersonedu.crt"
+server:
+  port: 8443
+limit: 10

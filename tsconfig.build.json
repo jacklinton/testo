@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["es2017", "dom", "es5"],
+    "noEmit": false,
+    "declaration": true,
+    "allowJs": true,
+    "checkJs": true,
+    "emitDeclarationOnly": true,
+    "types": ["node", "mocha", "chai"],
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./",
+    "outFile": "index.d.ts",
+    "resolveJsonModule": true
+  },
+  "include": ["src"],
+  "exclude": ["./**/*.test.js"]
+}

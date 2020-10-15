@@ -1,0 +1,32 @@
+version: "2.1"
+services:
+  testo-api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: ["npm", "start"]
+    depends_on:
+      - redis
+    environment:
+      NODE_ENV: development
+      APP_NAME: testo
+      APP_VERSION: '0.0.1'
+      REDIS_PREFIX: testo
+      JWT_EXPIRES_IN: 1d
+      JWT_SECRET: the_cake_is_a_lie
+      LOG_PATH: /var/log/testo
+      LOG_LEVEL: info
+      FILE_NAME: api.combined.log
+      MAX_SIZE: 10m
+      MAX_FILES: 5
+      SPLUNK_INDEX: test
+    volumes:
+      - ./src:/home/testo/src
+      - ./volumes:/home/testo/volumes
+      - ./volumes/logs:/var/log/testo
+      - ./volumes/certs:/opt/testo/certs
+    ports:
+      - "8443:8443"
+
+  redis:
+    image: redis
