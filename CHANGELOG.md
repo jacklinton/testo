@@ -6,5 +6,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.0.1](http://chapel.tjh.tju.edu/appdev/research-portal-api/tree/v0.0.1) - 2020-06-29
+## [0.0.1](https://github.com/jacklinton/testo/releases/tag/v0.0.1) - 2020-10-15
 - This CHANGELOG file
