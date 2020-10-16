@@ -22,9 +22,7 @@
   "author": "Jack Linton",
   "license": "UNLICENSED",
   "dependencies": {
-    "@apis/camelcase": "git+http:git@chapel.tjh.tju.edu/api-packages/camelcase",
-    "@apis/node-logger": "git+http:git@chapel.tjh.tju.edu/api-packages/node-logger",
-    "@apis/pg-paginate": "git+http:git@chapel.tjh.tju.edu/api-packages/pg-paginate",
+    "@apis/node-logger": "git+http:git@chapel.tjh.tju.edu/api-packages/node-logger#transpiled",
     "@apis/request-cache": "git+http:git@chapel.tjh.tju.edu/api-packages/request-cache",
     "@apis/request-id": "git+http:git@chapel.tjh.tju.edu/api-packages/request-id",
     "axios": "^0.19.2",
