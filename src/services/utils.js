@@ -9,7 +9,7 @@ export function sessionConnectObj(req) {
   })
 }
 
-export function newConnectObj(req) {
+export function newConnectObj() {
   return new jsforce.Connection({ oauth2 })
 }
 
