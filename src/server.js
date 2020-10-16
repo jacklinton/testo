@@ -20,6 +20,7 @@ app.use(session({secret: 'S3CRE7', resave: true, saveUninitialized: true}))
 
 app.use(cors())
 app.use(BodyParser.json())
+app.use(BodyParser.urlencoded({ extended: true }))
 
 // serve docs as status asset
 app.use(express.static(path.resolve(__dirname, '../public')))
