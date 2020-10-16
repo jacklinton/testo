@@ -24,6 +24,7 @@ services:
       CLIENT_ID: 3MVG98hdjyNB1QTl31E_eqyWHfEOMT.xvNufQvnWPnKkJ2BY4.QhL9km0zbJQ_S62_.ifHhFpTxZxmzJJx67b
       CLIENT_SECRET: B2D19AAB10F4936A7C18FDFA10912FC9422E95C6CA7B5D1773C2E076BA2E785F
       APP_URL: https://localhost:8443
+      REDIRECT_URI: https://localhost:8443/token
     volumes:
       - ./src:/home/testo/src
       - ./volumes:/home/testo/volumes
