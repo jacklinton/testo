@@ -2,39 +2,50 @@
  * @route accounts
  * @description This route will display account info
  */
-import jsforce from 'jsforce'
 import logger from '@apis/node-logger'
-import { oauth2 } from '../../services/initForce'
+import {
+  sessionConnectObj,
+  paginate,
+  decorateResults,
+} from '../../services/utils'
 
-export const getRecords = (req, res) => {
+export function createBaseQuery(req) {
+  const conn = sessionConnectObj(req)
+  return conn
+    .sobject('Account')
+    .select([
+      'Id',
+      'Name',
+      'BillingCity',
+      'BillingCountry',
+      'Phone',
+      'Website',
+      'AnnualRevenue',
+    ])
+}
+
+async function getRecords(req, res) {
   if (!req.session.accessToken || !req.session.instanceUrl) {
-    res.redirect('/version')
+    logger.info('Attempt to access data without authorization')
+    return res.redirect('/version')
   }
+  let result
+  const pageSize = req.query.pageSize || 10
+  const pageNum = req.query.pageNum || 1
 
-  let q = `SELECT id, name FROM account LIMIT 10`
+  try {
+    const baseQuery = createBaseQuery(req)
 
-  let conn = new jsforce.Connection({
-    oauth2: { oauth2 },
-    accessToken: req.session.accessToken,
-    instanceUrl: req.session.instanceUrl,
-  })
+    const paginatedQuery = await paginate(baseQuery, pageSize, pageNum)
 
-  let records = []
-  let query = conn
-    .query(q)
-    .on('record', function(record) {
-      records.push(record)
-    })
-    .on('end', function() {
-      console.log('total in database : ' + query.totalSize)
-      console.log('total fetched : ' + query.totalFetched)
-      res.json(records)
-    })
-    .on('error', function(err) {
-      console.error(err)
-    })
-    .run({ autoFetch: true, maxFetch: 4000 })
-  // return query
+    result = decorateResults(paginatedQuery, pageSize, pageNum)
+  } catch (e) {
+    logger.error(e)
+    return res
+      .status(404)
+      .json({ error: 'No records found with search parameters' })
+  }
+  return res.json(result)
 }
 
 export default [['GET /accounts', getRecords]]
