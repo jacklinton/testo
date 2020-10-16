@@ -24,7 +24,7 @@ export function createBaseQuery(req) {
     ])
 }
 
-export async function getRecords(req, res, baseQueryBuilder = createBaseQuery) {
+export async function getRecords(req, res) {
   if (!req.session.accessToken || !req.session.instanceUrl) {
     logger.info('Attempt to access data without authorization')
     return res.redirect('/version')
@@ -34,7 +34,7 @@ export async function getRecords(req, res, baseQueryBuilder = createBaseQuery) {
   const pageNum = req.query.pageNum || 1
 
   try {
-    const baseQuery = baseQueryBuilder(req)
+    const baseQuery = createBaseQuery(req)
 
     const paginatedQuery = await paginate(baseQuery, pageSize, pageNum)
 
