@@ -16,7 +16,7 @@ const __dirname = path.resolve()
 const app = express()
 
 // Init session
-app.use(session({secret: 'S3CRE7', resave: true, saveUninitialized: true}))
+app.use(session({ secret: 'S3CRE7', resave: true, saveUninitialized: true }))
 
 app.use(cors())
 app.use(BodyParser.json())
