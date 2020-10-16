@@ -2,12 +2,11 @@
  * @route token
  * @description This route is the callback url to receive the token code.
  */
-import jsforce from 'jsforce'
 import logger from '@apis/node-logger'
-import { oauth2 } from '../../services/initForce'
+import { newConnectObj } from '../../services/utils'
 
 export const acceptTokenCode = (req, res) => {
-  const conn = new jsforce.Connection({ oauth2 })
+  const conn = newConnectObj()
   const { code } = req.query
 
   return conn.authorize(code, err => {
@@ -19,7 +18,7 @@ export const acceptTokenCode = (req, res) => {
     req.session.instanceUrl = conn.instanceUrl
     req.session.refreshToken = conn.refreshToken
 
-    res.redirect('https://localhost:8443/accounts')
+    res.redirect(`${process.env.APP_URL || 'https://localhost:8443'}/accounts`)
   })
 }
 

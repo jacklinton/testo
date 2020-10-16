@@ -9,6 +9,10 @@ export function sessionConnectObj(req) {
   })
 }
 
+export function newConnectObj(req) {
+  return new jsforce.Connection({ oauth2 })
+}
+
 export function paginate(query, pageSize, pageNum) {
   if (!pageSize) {
     return query
