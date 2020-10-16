@@ -7,10 +7,10 @@ import logger from '@apis/node-logger'
 import { oauth2 } from '../../services/initForce'
 
 export const acceptTokenCode = (req, res) => {
-  const conn = new jsforce.Connection({ oauth2: oauth2 })
-  const code = req.query.code
+  const conn = new jsforce.Connection({ oauth2 })
+  const { code } = req.query
 
-  return conn.authorize(code, (err) => {
+  return conn.authorize(code, err => {
     if (err) {
       logger.error(`There was an error in the auth callback: ${err}`)
     }
